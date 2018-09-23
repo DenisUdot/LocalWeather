@@ -28,9 +28,10 @@
         <activity android:name=".GeoHistory">
         </activity>
 
-        <service android:name="com.denisudotgmail.localweather.GeoService"
-            android:enabled="true">
-        </service>
+        <service
+            android:name=".GeoService"
+            android:exported="false"
+            android:enabled="true"/>
     </application>
 
 </manifest>
