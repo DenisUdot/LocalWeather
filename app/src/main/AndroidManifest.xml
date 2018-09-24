@@ -3,8 +3,9 @@
     package="com.denisudotgmail.localweather">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
@@ -14,24 +15,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="gmail.com" />
+            </intent-filter>
         </activity>
 
-        <activity android:name=".GeoLocation" >
-        </activity>
+        <activity
+            android:name=".GeoLocation"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".GeoHistory">
-        </activity>
+        <activity
+            android:name=".GeoHistory"
+            android:screenOrientation="portrait"></activity>
 
         <service
             android:name=".GeoService"
             android:exported="false"
-            android:enabled="true"/>
+            android:enabled="true" />
     </application>
 
 </manifest>
