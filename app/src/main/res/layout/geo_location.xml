@@ -13,7 +13,7 @@
         android:id="@+id/btn_start_location_updates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/start_updates" />
 
     <Button
@@ -24,20 +24,25 @@
         android:enabled="false"
         android:text="@string/stop_updates" />
 
-    <Button
-        android:id="@+id/btn_get_last_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/get_last_location" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_get_last_location"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="@string/get_last_location" />-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="Location updates will be received only when app is foreground" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"/>
     <TextView
         android:id="@+id/location_result"
         android:layout_width="wrap_content"
@@ -46,12 +51,12 @@
         android:textColor="#333"
         android:textSize="18dp" />
 
-    <TextView
-        android:id="@+id/updated_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="11dp" />
+    <!--<TextView-->
+        <!--android:id="@+id/updated_on"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:textSize="11dp" />-->
     <TextView
         android:id="@+id/address_result"
         android:layout_width="wrap_content"
@@ -65,35 +70,29 @@
         android:id="@+id/city_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/updated_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/city_field"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="13sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/updated_field"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/city_field"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:textSize="13sp" />-->
 
     <TextView
         android:id="@+id/weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="70sp"
+        android:textSize="30sp"
         />
 
     <TextView
         android:id="@+id/current_temperature_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
 
@@ -101,8 +100,6 @@
         android:id="@+id/details_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weather_icon"
-        android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
 </LinearLayout>
