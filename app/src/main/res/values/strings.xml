@@ -3,6 +3,7 @@
     <string name="start_updates">Start updates</string>
     <string name="stop_updates">Stop updates</string>
     <string name="get_last_location">Get last location</string>
+    <string name="refresh">Refresh</string>
 
     <string name="open_weather_maps_app_id">5182c591149a8829ad38a63736cdc5e2</string>
 

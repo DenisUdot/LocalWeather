@@ -19,6 +19,7 @@ package com.denisudotgmail.localweather;
  import android.util.Log;
  import android.view.View;
  import android.widget.Button;
+ import android.widget.ImageView;
  import android.widget.TextView;
  import android.widget.Toast;
 
@@ -71,7 +72,7 @@ public class GeoLocation extends Activity {
     TextView updatedField;
     TextView detailsField;
     TextView currentTemperatureField;
-    TextView weatherIcon;
+    ImageView weatherIcon;
 
     // location last updated time
     private String mLastUpdateTime;
@@ -101,17 +102,17 @@ public class GeoLocation extends Activity {
         setContentView(R.layout.geo_location);
         txtLocationResult = findViewById(R.id.location_result);
 //        txtUpdatedOn = findViewById(R.id.updated_on);
-        txtAddressResult = findViewById(R.id.address_result);
+//        txtAddressResult = findViewById(R.id.address_result);
         btnStartUpdates = findViewById(R.id.btn_start_location_updates);
         btnStartUpdates.setOnClickListener(new startLocationClickListener());
-        btnStopUpdates = findViewById(R.id.btn_stop_location_updates);
-        btnStopUpdates.setOnClickListener(new stopLocationButtonClickListener());
+//        btnStopUpdates = findViewById(R.id.btn_stop_location_updates);
+//        btnStopUpdates.setOnClickListener(new stopLocationButtonClickListener());
         // init weather textView
         cityField = (TextView)findViewById(R.id.city_field);
 //        updatedField = (TextView)findViewById(R.id.updated_field);
         detailsField = (TextView)findViewById(R.id.details_field);
         currentTemperatureField = (TextView)findViewById(R.id.current_temperature_field);
-        weatherIcon = (TextView)findViewById(R.id.weather_icon);
+        weatherIcon = (ImageView)findViewById(R.id.weather_icon);
 
         // initialize the necessary libraries
         init();
@@ -179,14 +180,14 @@ public class GeoLocation extends Activity {
         if (mCurrentLocation != null) {
             txtLocationResult.setText(String.format("Lat: %s, Lng: %s", mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
             //show address
-            txtAddressResult.setText(getAddress(mCurrentLocation));
+//            txtAddressResult.setText(getAddress(mCurrentLocation));
             //update weather fields
             updateWeatherData(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 
             // giving a blink animation on TextView
             txtLocationResult.setAlpha(0);
             txtLocationResult.animate().alpha(1).setDuration(300);
-
+            stopLocationUpdates();
             // location last updated time
 //            txtUpdatedOn.setText("Last updated on: " + mLastUpdateTime);
         }
@@ -206,10 +207,10 @@ public class GeoLocation extends Activity {
     private void toggleButtons() {
         if (mRequestingLocationUpdates) {
             btnStartUpdates.setEnabled(false);
-            btnStopUpdates.setEnabled(true);
+//            btnStopUpdates.setEnabled(true);
         } else {
             btnStartUpdates.setEnabled(true);
-            btnStopUpdates.setEnabled(false);
+//            btnStopUpdates.setEnabled(false);
         }
     }
 
@@ -275,6 +276,7 @@ public class GeoLocation extends Activity {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         mRequestingLocationUpdates = true;
+                        toggleButtons();
                         startLocationUpdates();
                     }
 
@@ -296,13 +298,13 @@ public class GeoLocation extends Activity {
     }
 
 
-    class stopLocationButtonClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            mRequestingLocationUpdates = false;
-            stopLocationUpdates();
-        }
-    }
+//    class stopLocationButtonClickListener implements View.OnClickListener {
+//        @Override
+//        public void onClick(View v) {
+//            mRequestingLocationUpdates = false;
+//            stopLocationUpdates();
+//        }
+//    }
 
     public void stopLocationUpdates() {
         // Removing location updates
@@ -312,6 +314,7 @@ public class GeoLocation extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getApplicationContext(), "Location updates stopped!", Toast.LENGTH_SHORT).show();
+                        mRequestingLocationUpdates = false;
                         toggleButtons();
                     }
                 });
@@ -378,27 +381,27 @@ public class GeoLocation extends Activity {
     }
 
 
-    public String getAddress(Location currentLocation){
-        try {
-            Geocoder geocoder;
-            List<Address> addresses;
-            geocoder = new Geocoder(this, Locale.ENGLISH);
-
-            addresses = geocoder.getFromLocation(currentLocation.getLatitude(),currentLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();
-            return address;
-        } catch (IOException ioException) {
-            Log.d(TAG,"get address exception");
-            return "unknown address";
-        }
-
-    }
+//    public String getAddress(Location currentLocation){
+//        try {
+//            Geocoder geocoder;
+//            List<Address> addresses;
+//            geocoder = new Geocoder(this, Locale.ENGLISH);
+//
+//            addresses = geocoder.getFromLocation(currentLocation.getLatitude(),currentLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+//
+//            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//            String city = addresses.get(0).getLocality();
+//            String state = addresses.get(0).getAdminArea();
+//            String country = addresses.get(0).getCountryName();
+//            String postalCode = addresses.get(0).getPostalCode();
+//            String knownName = addresses.get(0).getFeatureName();
+//            return address;
+//        } catch (IOException ioException) {
+//            Log.d(TAG,"get address exception");
+//            return "unknown address";
+//        }
+//
+//    }
 
     //Get weather data
     private void updateWeatherData(final double lat,final double lon){
@@ -439,9 +442,9 @@ public class GeoLocation extends Activity {
 //            String updatedOn = df.format(new Date(json.getLong("dt")*1000));
 //            updatedField.setText("Last update: " + updatedOn);
 
-//            setWeatherIcon(details.getInt("id"),
-//                    json.getJSONObject("sys").getLong("sunrise") * 1000,
-//                    json.getJSONObject("sys").getLong("sunset") * 1000);
+            setWeatherIcon(details.getInt("id"),
+                    json.getJSONObject("sys").getLong("sunrise") * 1000,
+                    json.getJSONObject("sys").getLong("sunset") * 1000);
 
         }catch(Exception e){
             Log.e("SimpleWeather", "One or more fields not found in the JSON data");
@@ -450,31 +453,33 @@ public class GeoLocation extends Activity {
 
     private void setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
-        String icon = "";
+        int icon = R.drawable.weather_na;
         if(actualId == 800){
             long currentTime = new Date().getTime();
             if(currentTime>=sunrise && currentTime<sunset) {
 //                icon = getActivity.getString(R.string.weather_sunny);
-                icon = getString(R.string.weather_sunny);
+                icon = R.drawable.weather_sunny;
             } else {
-                icon = getString(R.string.weather_clear_night);
+                icon = R.drawable.weather_clear_night;
             }
         } else {
             switch(id) {
-                case 2 : icon = getString(R.string.weather_thunder);
+                case 2 : icon = R.drawable.weather_thunder;
                     break;
-                case 3 : icon = getString(R.string.weather_drizzle);
+                case 3 : icon = R.drawable.weather_drizzle;
                     break;
-                case 7 : icon = getString(R.string.weather_foggy);
+                case 5 : icon = R.drawable.weather_rainy;
                     break;
-                case 8 : icon = getString(R.string.weather_cloudy);
+                case 6 : icon = R.drawable.weather_snowy;
                     break;
-                case 6 : icon = getString(R.string.weather_snowy);
+                case 7 : icon = R.drawable.weather_foggy;
                     break;
-                case 5 : icon = getString(R.string.weather_rainy);
+                case 8 : icon = R.drawable.weather_cloudy;
                     break;
+
+
             }
         }
-        weatherIcon.setText(icon);
+        weatherIcon.setImageResource(icon);
     }
 }

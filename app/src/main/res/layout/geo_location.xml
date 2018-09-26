@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+<ScrollView
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,15 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/start_updates" />
+        android:text="@string/refresh" />
 
-    <Button
-        android:id="@+id/btn_stop_location_updates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:enabled="false"
-        android:text="@string/stop_updates" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_stop_location_updates"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:enabled="false"-->
+        <!--android:text="@string/stop_updates" />-->
 
     <!--<Button-->
         <!--android:id="@+id/btn_get_last_location"-->
@@ -57,12 +62,12 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_marginTop="30dp"-->
         <!--android:textSize="11dp" />-->
-    <TextView
-        android:id="@+id/address_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_marginTop="20dp"/>
+    <!--<TextView-->
+        <!--android:id="@+id/address_result"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="18dp"-->
+        <!--android:layout_marginTop="20dp"/>-->
 
     <!--weather-->
 
@@ -81,12 +86,10 @@
         <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
         <!--android:textSize="13sp" />-->
 
-    <TextView
+    <ImageView
         android:id="@+id/weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp"
         />
 
     <TextView
@@ -104,3 +107,4 @@
         />
 </LinearLayout>
 </ScrollView>
+</RelativeLayout>
