@@ -105,8 +105,8 @@ public class GeoLocation extends Activity {
 //        txtAddressResult = findViewById(R.id.address_result);
         btnStartUpdates = findViewById(R.id.btn_start_location_updates);
         btnStartUpdates.setOnClickListener(new startLocationClickListener());
-//        btnStopUpdates = findViewById(R.id.btn_stop_location_updates);
-//        btnStopUpdates.setOnClickListener(new stopLocationButtonClickListener());
+        btnStopUpdates = findViewById(R.id.btn_stop_location_updates);
+        btnStopUpdates.setOnClickListener(new stopLocationButtonClickListener());
         // init weather textView
         cityField = (TextView)findViewById(R.id.city_field);
 //        updatedField = (TextView)findViewById(R.id.updated_field);
@@ -207,10 +207,10 @@ public class GeoLocation extends Activity {
     private void toggleButtons() {
         if (mRequestingLocationUpdates) {
             btnStartUpdates.setEnabled(false);
-//            btnStopUpdates.setEnabled(true);
+            btnStopUpdates.setEnabled(true);
         } else {
             btnStartUpdates.setEnabled(true);
-//            btnStopUpdates.setEnabled(false);
+            btnStopUpdates.setEnabled(false);
         }
     }
 
@@ -298,13 +298,13 @@ public class GeoLocation extends Activity {
     }
 
 
-//    class stopLocationButtonClickListener implements View.OnClickListener {
-//        @Override
-//        public void onClick(View v) {
-//            mRequestingLocationUpdates = false;
-//            stopLocationUpdates();
-//        }
-//    }
+    class stopLocationButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            mRequestingLocationUpdates = false;
+            stopLocationUpdates();
+        }
+    }
 
     public void stopLocationUpdates() {
         // Removing location updates
